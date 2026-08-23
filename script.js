@@ -1,0 +1,4 @@
+const cursor=document.querySelector('.cursor');
+if(cursor){window.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});document.querySelectorAll('a').forEach(a=>{a.addEventListener('mouseenter',()=>{cursor.style.width='34px';cursor.style.height='34px'});a.addEventListener('mouseleave',()=>{cursor.style.width='18px';cursor.style.height='18px'})})}
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.animate([{opacity:0,transform:'translateY(22px)'},{opacity:1,transform:'translateY(0)'}],{duration:700,easing:'cubic-bezier(.2,.7,.2,1)',fill:'forwards'});observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.project,.project-card,.service-list>div,.big-copy,.manifesto h2,.email').forEach(el=>{el.style.opacity=0;observer.observe(el)});
